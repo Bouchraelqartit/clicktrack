@@ -10,4 +10,10 @@
 
     <mvc:annotation-driven/>
 
+    <bean id="publisherController"
+          class="ma.youcode.clicktrack.controller.PublisherController">
+        <constructor-arg ref="publisherService"/>
+    </bean>
+
+
 </beans>
