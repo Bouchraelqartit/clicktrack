@@ -10,5 +10,11 @@
           class="ma.youcode.clicktrack.service.PublisherServiceImpl">
           <constructor-arg ref="publisherRepository"/>
     </bean>
+    <bean id="lienRepository"
+          class="ma.youcode.clicktrack.repository.LienRepositoryImpl"/>
+    <bean id="lienService"
+          class="ma.youcode.clicktrack.service.LienServiceImpl">
+        <constructor-arg ref="lienRepository"/>
+    </bean>
 
 </beans>

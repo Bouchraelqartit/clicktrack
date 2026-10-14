@@ -14,6 +14,10 @@
           class="ma.youcode.clicktrack.controller.PublisherController">
         <constructor-arg ref="publisherService"/>
     </bean>
+    <bean id="lienController"
+          class="ma.youcode.clicktrack.controller.LienController">
+        <constructor-arg ref="lienService"/>
+    </bean>
 
 
 </beans>
