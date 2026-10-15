@@ -7,6 +7,10 @@ public class Publisher {
     private String email;
     private Categorie categorie;
 
+    public Publisher(){
+
+    }
+
     public Publisher(int id, String nom, String prenom, String email, Categorie categorie){
         this.id = id;
         this.nom = nom;

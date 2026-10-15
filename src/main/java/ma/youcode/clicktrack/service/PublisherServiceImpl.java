@@ -15,4 +15,8 @@ public class PublisherServiceImpl implements PublisherService{
     public List<Publisher> findAll(){
         return publisherRepository.findAll();
     }
+
+    public Publisher save(Publisher publisher) {
+        return publisherRepository.save(publisher);
+    }
 }
