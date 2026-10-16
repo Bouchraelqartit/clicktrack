@@ -1,11 +1,8 @@
-
 package ma.youcode.clicktrack.service;
 
 import ma.youcode.clicktrack.entity.Lien;
 import ma.youcode.clicktrack.repository.LienRepository;
-
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class LienServiceImpl implements LienService {
 
@@ -37,5 +34,35 @@ public class LienServiceImpl implements LienService {
     @Override
     public List<Lien> findByPublisherId(int publisherId) {
         return lienRepository.findByPublisherId(publisherId);
+    }
+
+    @Override
+    public List<Map<String, Object>> findOffresByPublisherId(int publisherId) {
+        List<Lien> liens = lienRepository.findByPublisherId(publisherId);
+
+        Map<String, Map<String, Object>> offres = new LinkedHashMap<>();
+
+        for (Lien lien : liens) {
+            String nomOffre = lien.getOffre();
+
+            if (!offres.containsKey(nomOffre)) {
+                Map<String, Object> statistiques = new LinkedHashMap<>();
+                statistiques.put("offre", nomOffre);
+                statistiques.put("nombreLiens", 0);
+                statistiques.put("totalClicks", 0);
+
+                offres.put(nomOffre, statistiques);
+            }
+
+            Map<String, Object> statistiques = offres.get(nomOffre);
+
+            int nombreLiens = (int) statistiques.get("nombreLiens");
+            statistiques.put("nombreLiens", nombreLiens + 1);
+
+            int totalClicks = (int) statistiques.get("totalClicks");
+            statistiques.put("totalClicks", totalClicks + lien.getClicks());
+        }
+
+        return new ArrayList<>(offres.values());
     }
 }
