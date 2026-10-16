@@ -5,6 +5,7 @@ import ma.youcode.clicktrack.entity.Lien;
 import ma.youcode.clicktrack.service.LienService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/publishers")
@@ -27,5 +28,10 @@ public class LienController {
                 lien.getOffre(),
                 lien.getUrlDestination()
         );
+    }
+
+    @GetMapping("/{id}/liens")
+    public List<Lien> findByPublisherId(@PathVariable("id") int id) {
+        return lienService.findByPublisherId(id);
     }
 }

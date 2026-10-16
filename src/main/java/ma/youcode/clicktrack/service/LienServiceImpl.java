@@ -4,6 +4,7 @@ package ma.youcode.clicktrack.service;
 import ma.youcode.clicktrack.entity.Lien;
 import ma.youcode.clicktrack.repository.LienRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 public class LienServiceImpl implements LienService {
@@ -31,5 +32,10 @@ public class LienServiceImpl implements LienService {
         }
 
         return lienOptional;
+    }
+
+    @Override
+    public List<Lien> findByPublisherId(int publisherId) {
+        return lienRepository.findByPublisherId(publisherId);
     }
 }

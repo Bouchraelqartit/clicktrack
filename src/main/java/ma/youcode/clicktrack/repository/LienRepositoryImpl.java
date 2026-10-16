@@ -22,4 +22,9 @@ public class LienRepositoryImpl implements LienRepository {
                 .filter(lien -> lien.getId() == id)
                 .findFirst();
     }
+
+    @Override
+    public synchronized List<Lien> findByPublisherId(int publisherId){
+        return liens.stream().filter(lien -> lien.getPublisherId() == publisherId).toList();
+    }
 }
